@@ -16,9 +16,9 @@ app.use(passport.session());
 app.get('/', (req, res) => {
   res.send(`<center style="font-size:160%"> <p>This is Home Page </p>
   <p>User is not Logged In</p>
-  <img style="cursor:pointer;"  onclick="window.location='/auth/linkedin'" src="http://www.bkpandey.com/wp-content/uploads/2017/09/linkedinlogin.png"/>
-  </center>
+  <img style="cursor:pointer;"  onclick="window.location='/auth/linkedin'" src="http://www.bkpandey.com/wp-content/uploads/2017/09/linkedinlogin.png"/> <br/> <br/>
   <a href='/auth/google'>Login with google</a>
+  </center>
   `);
 });
 
