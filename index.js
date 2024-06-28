@@ -1,11 +1,14 @@
 const express = require('express');
 const passport = require('passport');
+const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
 dotenv.configDotenv();
 
 require('./auth/passport-linkedin');
 require('./auth/passport-google');
+require('./auth/passport-facebook');
+
 const session = require('express-session');
 const app = express();
 
@@ -18,11 +21,19 @@ app.get('/', (req, res) => {
   <p>User is not Logged In</p>
   <img style="cursor:pointer;"  onclick="window.location='/auth/linkedin'" src="http://www.bkpandey.com/wp-content/uploads/2017/09/linkedinlogin.png"/> <br/> <br/>
   <a href='/auth/google'>Login with google</a>
+  <br/> <br/>
+  <a href='/auth/facebook'>Login with facebook</a>
   </center>
   `);
 });
 
+mongoose
+  .connect('mongodb+srv://admin:12345abcde@cluster0.vgmewo8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  .then(() => console.log("Connected to Database"));
+
 app.use('/auth', require('./router/linkedin'));
+app.use('/api', require('./router/webhook'));
+
 
 app.get(
   "/api/redirect_uri",

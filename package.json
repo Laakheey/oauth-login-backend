@@ -15,9 +15,12 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "mongoose": "^8.4.4",
     "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-linkedin-oauth2": "github:auth0/passport-linkedin-oauth2"
+    "passport-linkedin-oauth2": "github:auth0/passport-linkedin-oauth2",
+    "stripe": "^16.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

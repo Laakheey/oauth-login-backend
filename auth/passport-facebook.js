@@ -1,4 +1,4 @@
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
 
 passport.serializeUser((user, done) => {
@@ -10,12 +10,12 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(
-  new GoogleStrategy(
+  new FacebookStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/redirect_uri",
-      scope: ["email", "profile", "openid"],
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: "/auth/facebook/callback",
+      scope: ["email", "public_profile"],
     },
     function (accessToken, refreshToken, profile, done) {
       process.nextTick(function () {

@@ -32,13 +32,20 @@ router.get("/logout", (req, res) => {
   });
 });
 
-
 router.get(
-    "/google",
-    passport.authenticate("google", { state: "SOME STATE" }),
-    function (req, res) {}
+  "/google",
+  passport.authenticate("google", { state: "SOME STATE" }),
+  function (req, res) {}
 );
 
+router.get("/facebook", passport.authenticate("facebook"));
 
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "/auth/login/success",
+    failureRedirect: "/",
+  })
+);
 
 module.exports = router;
