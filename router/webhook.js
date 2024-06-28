@@ -35,6 +35,7 @@ router.post('/webhook', express.raw({type: 'application/json'}), async (request,
   switch (event.type) {
     case 'checkout.session.completed':
       const checkoutSessionCompleted = event.data.object;
+      console.log("🚀 ~ router.post ~ checkoutSessionCompleted:", checkoutSessionCompleted)
       sessionData = checkoutSessionCompleted;
       break;
     default:
