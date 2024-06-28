@@ -28,6 +28,7 @@ mongoose
   .catch((error) => console.error("MongoDB connection error:", error));
 
 app.use(express.json({ type: 'application/json' }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   const isAuthenticated = req.isAuthenticated();
