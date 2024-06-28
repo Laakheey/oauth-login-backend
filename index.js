@@ -16,6 +16,9 @@ app.use(session({secret: 'hdfjshfvhsdf'}))
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.json());
+app.use(express.raw());
+
 app.get('/', (req, res) => {
   res.send(`<center style="font-size:160%"> <p>This is Home Page </p>
   <p>User is not Logged In</p>
@@ -28,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 mongoose
-  .connect('mongodb+srv://admin:12345abcde@cluster0.vgmewo8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to Database"));
 
 app.use('/auth', require('./router/linkedin'));
