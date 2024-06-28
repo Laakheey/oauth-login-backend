@@ -3,6 +3,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -45,7 +46,9 @@ app.get('/', (req, res) => {
 
 app.use('/auth', require('./router/linkedin'));
 
-app.use('/api/webhook', require('./router/webhook'));
+app.use('/api/webhook', bodyParser.raw({ type: 'application/json' }));
+
+app.use('/api', require('./router/webhook'));
 
 app.get(
   "/api/redirect_uri",

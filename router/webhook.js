@@ -8,6 +8,7 @@ const router = express.Router();
 const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
 
 router.post('/webhook', express.raw({ type: 'application/json' }), async (request, response) => {
+  console.log('Webhook received');
   const sig = request.headers['stripe-signature'];
 
   let event;
