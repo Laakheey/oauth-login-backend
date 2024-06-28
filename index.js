@@ -18,6 +18,8 @@ app.use(passport.session());
 
 app.use(express.json());
 app.use(express.raw());
+app.use(express.json({ type: '*/*' }));
+
 
 app.get('/', (req, res) => {
   res.send(`<center style="font-size:160%"> <p>This is Home Page </p>
@@ -35,8 +37,9 @@ mongoose
   .then(() => console.log("Connected to Database"));
 
 app.use('/auth', require('./router/linkedin'));
-app.use('/api', require('./router/webhook'));
 
+app.use('/api/webhook', express.raw({ type: 'application/json' }));
+app.use('/api', require('./router/webhook'));
 
 app.get(
   "/api/redirect_uri",
